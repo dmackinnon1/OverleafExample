@@ -1,0 +1,32 @@
+
+
+name: HTML Compile Action
+on:
+  #push:
+  # branches: [ "main" ]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: texlive/texlive:latest
+
+    steps:
+      - name: Install LaTeXML
+        run: |
+          sudo apt-get install latexml;       
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Run latexml
+        run: "paper.tex --dest=page.html"
+      - name: add permissions
+        run: "git config --global --add safe.directory /__w/OverleafExample/OverleafExample"
+      - name: Store build timestamp
+        run: echo "BUILD_TIME=$(date +'%Y-%m-%d_%H-%M-%S')" >> $GITHUB_ENV
+      - name: change file name
+        run: "mv page.html page$BUILD_TIME.html"
+      - name: add and commit
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: '*.html'
