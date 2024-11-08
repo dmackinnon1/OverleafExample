@@ -1,5 +1,3 @@
-
-
 name: HTML Compile Action
 on:
   #push:
@@ -10,11 +8,12 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: texlive/texlive:latest
+    #container: texlive/texlive:latest
 
     steps:
-      - name: Install LaTeXML
+      - name: Install TexLive and LaTeXML
         run: |
+          sudo apt-get install texlive;
           sudo apt-get install latexml;       
       - name: Checkout repository
         uses: actions/checkout@v4
