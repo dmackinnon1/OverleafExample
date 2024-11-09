@@ -24,7 +24,7 @@ jobs:
       - name: cleanup old pdfs
         run: |
           git rm --ignore-unmatch *.pdf
-          git commit -m 'removing old pdfs, github action'
+          git commit --allow-empty -m 'removing old pdfs, github action'
           git push
       - name: Run latexmk
         run: "latexmk --pdflatex main.tex"
