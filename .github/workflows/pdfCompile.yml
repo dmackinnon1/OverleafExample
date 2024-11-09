@@ -23,7 +23,7 @@ jobs:
             git config --global user.name "Dan MacKinnon"
       - name: cleanup old pdfs
         run: |
-          git rm *.pdf
+          git rm --ignore-unmatch *.pdf
           git commit -m 'removing old pdfs, github action'
           git push
       - name: Run latexmk
