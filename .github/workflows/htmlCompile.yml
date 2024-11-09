@@ -17,15 +17,25 @@ jobs:
           sudo apt-get install latexml;       
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Run latexml
-        run: "latexmlc main.tex --dest=page.html"
       - name: add permissions
         run: "git config --global --add safe.directory /__w/OverleafExample/OverleafExample"
+      - name: set git variables
+        run: |
+            git config --global user.email "dmackinnon1@gmail.com"
+            git config --global user.name "Dan MacKinnon"
+      - name: cleanup old HTML
+        run: |
+          git rm *.html
+          git commit -m 'removing old HTML, github action'
+          git push
+      - name: Run latexml
+        run: "latexmlc main.tex --dest=page.html"
       - name: Store build timestamp
         run: echo "BUILD_TIME=$(date +'%Y-%m-%d_%H-%M-%S')" >> $GITHUB_ENV
       - name: change file name
         run: "mv page.html page$BUILD_TIME.html"
-      - name: add and commit
-        uses: EndBug/add-and-commit@v9
-        with:
-          add: '*.html'
+      - name: adding new HTML
+        run: |
+          git add page$BUILD_TIME.html
+          git commit -m 'adding new HTML, github action'
+          git push
