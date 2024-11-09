@@ -25,8 +25,8 @@ jobs:
             git config --global user.name "Dan MacKinnon"
       - name: cleanup old HTML
         run: |
-          git rm *.html
-          git commit -m 'removing old HTML, github action'
+          git rm --ignore-unmatch *.html
+          git commit --allow-empty -m 'removing old HTML, github action'
           git push
       - name: Run latexml
         run: "latexmlc main.tex --dest=page.html"
