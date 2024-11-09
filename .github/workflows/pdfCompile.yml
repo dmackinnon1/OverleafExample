@@ -15,15 +15,26 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Run latexmk
-        run: "latexmk --pdflatex main.tex"
       - name: add permissions
         run: "git config --global --add safe.directory /__w/OverleafExample/OverleafExample"
+      - name: set git variables
+        run: |
+            git config --global user.email "dmackinnon1@gmail.com"
+            git config --global user.name "Dan MacKinnon"
+      - name: cleanup old pdfs
+        run: |
+          git rm *.pdf
+          git commit -m 'removing old pdfs, github action'
+          git push
+      - name: Run latexmk
+        run: "latexmk --pdflatex main.tex"
       - name: Store build timestamp
         run: echo "BUILD_TIME=$(date +'%Y-%m-%d_%H-%M-%S')" >> $GITHUB_ENV
       - name: change file name
         run: "mv main.pdf main$BUILD_TIME.pdf"
-      - name: add and commit
-        uses: EndBug/add-and-commit@v9
-        with:
-          add: '*.pdf'
+      - name: adding new pdfs
+        run: |
+          git add main$BUILD_TIME.pdf
+          git commit -m 'adding new pdfs, github action'
+          git push
+
