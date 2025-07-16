@@ -1,0 +1,22 @@
+name: Long Usage
+on:
+    workflow_dispatch:
+
+jobs:
+  convert_via_pandoc:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: add permissions
+        run: "git config --global --add safe.directory /__w/OverleafExample/OverleafExample"
+      - name: set git variables
+        run: |
+            git config --global user.email "dmackinnon1@gmail.com"
+            git config --global user.name "Dan MacKinnon"
+      - uses: docker://pandoc/core:3.5
+        with:
+          args: >-  # allows you to break string into multiple lines
+            --f latex
+            --t word
+            main.tex
