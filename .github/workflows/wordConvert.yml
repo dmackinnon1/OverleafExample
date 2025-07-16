@@ -19,4 +19,4 @@ jobs:
           args: >-  # allows you to break string into multiple lines
             --from="latex"
             --to="docx"
-            main.tex
+            main.tex output.docx
