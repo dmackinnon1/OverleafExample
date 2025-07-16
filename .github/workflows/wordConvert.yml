@@ -1,4 +1,4 @@
-name: Long Usage
+name: Convert to Word
 on:
     workflow_dispatch:
 
@@ -17,6 +17,6 @@ jobs:
       - uses: docker://pandoc/core:3.5
         with:
           args: >-  # allows you to break string into multiple lines
-            --f latex
-            --t word
+            --from="latex"
+            --to="word"
             main.tex
