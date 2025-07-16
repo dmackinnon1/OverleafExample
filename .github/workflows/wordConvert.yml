@@ -1,7 +1,8 @@
 name: Convert to Word
 on:
     workflow_dispatch:
-
+permissions:
+  contents: write
 jobs:
   convert_via_pandoc:
     runs-on: ubuntu-22.04
