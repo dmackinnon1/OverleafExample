@@ -20,4 +20,9 @@ jobs:
             --from="latex"
             --to="docx"
             --output="output.docx"
-            main.tex 
+            main.tex
+      - name: adding new word doc
+        run: |
+          git add output.docx
+          git commit -m 'adding new docx, github action'
+          git push
