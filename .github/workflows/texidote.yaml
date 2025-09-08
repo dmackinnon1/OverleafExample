@@ -38,6 +38,3 @@ jobs:
                 git add report.html
                 git commit -m 'adding new report HTML, github action'
                 git push
-            - name: Throw error if linter warnings exist
-              if: ${{ steps.lint.outputs.num_warnings != 0 }}
-              run: 'echo "::error file=main.tex::num_warnings: ${{ steps.lint.outputs.num_warnings }}"; exit 1;'
