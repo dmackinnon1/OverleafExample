@@ -15,12 +15,16 @@ jobs:
               run: |
                 git config --global user.email "dmackinnon1@gmail.com"
                 git config --global user.name "Dan MacKinnon"
+            - name: cleanup old report HTML
+              run: |
+                git rm --ignore-unmatch report.html
+                git commit --allow-empty -m 'removing old report HTML, github action'
+                git push
             - name: Lint LaTeX document
               uses: ChiefGokhlayeh/textidote-action@v5
               id: lint
               with:
                   root_file: main.tex
-
                   ## Implied defaults:
                   # working_directory:
                   # report_type: html
@@ -29,11 +33,11 @@ jobs:
                   ## Use this setting to pass custom arguments options to
                   ## TeXtidote (such as what grammar checker to use).
                   # args:
-            - name: Upload TeXtidote report
-              uses: actions/upload-artifact@v2
-              with:
-                  name: textidote_report
-                  path: report.html
+            - name: adding new HTML
+              run: |
+                git add report.html
+                git commit -m 'adding new report HTML, github action'
+                git push
             - name: Throw error if linter warnings exist
               if: ${{ steps.lint.outputs.num_warnings != 0 }}
               run: 'echo "::error file=main.tex::num_warnings: ${{ steps.lint.outputs.num_warnings }}"; exit 1;'
