@@ -45,7 +45,7 @@ jobs:
 
     # Specify the deployment environment.
     environment:
-      name: github-pages
+      name: html-output
       url: ${{ steps.deployment.outputs.page_url }}
 
     runs-on: ubuntu-latest
