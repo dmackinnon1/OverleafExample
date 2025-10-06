@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     # Run all steps in this job inside the official LaTeXML Docker container
     container:
-      image: latexml/latexml:latest
+      image: brucemiller/latexml:latest
 
     steps:
       # 1. Check out your repository's code
@@ -25,7 +25,7 @@ jobs:
           # Ensure the runner user owns the files to be able to write output
           chown -R $(id -u):$(id -g) .
           mkdir -p public
-          latexml --dest=public/index.html your-main-file.tex
+          latexml --dest=public/index.html main.tex
 
       # 3. Upload the 'public' directory as a build artifact
       - name: Upload HTML artifact
