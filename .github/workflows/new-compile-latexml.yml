@@ -18,7 +18,7 @@ jobs:
         run: |
           chown -R $(id -u):$(id -g) .
           mkdir -p public
-          latexml --dest=public/index.html your-main-file.tex
+          latexml --dest=public/index.html main.tex
 
       # This is the key change: Use the dedicated action for GitHub Pages
       - name: Upload Pages artifact
