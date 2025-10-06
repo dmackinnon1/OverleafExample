@@ -33,3 +33,30 @@ jobs:
         with:
           name: html-output
           path: public/
+# Job 2 (Optional): Deploy the generated HTML to GitHub Pages
+  deploy:
+    # This job runs only after the 'build' job has succeeded.
+    needs: build
+    
+    # Required permissions for deploying to GitHub Pages.
+    permissions:
+      pages: write
+      id-token: write
+
+    # Specify the deployment environment.
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+    steps:
+      # 1. Download the artifact that was uploaded by the 'build' job.
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: html-output
+
+      # 2. Deploy the downloaded files to GitHub Pages.
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
