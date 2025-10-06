@@ -1,0 +1,95 @@
+# .github/workflows/compile-latexml.yml
+name: Compile LaTeX to HTML with LaTeXML
+
+# Controls when the action will run.
+on:
+  workflow_dispatch:
+
+jobs:
+  # Job 1: Build the HTML from the LaTeX source
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. Check out your repository's code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Set up a minimal TeX Live environment
+      # This action is more efficient than installing a full TeX Live distribution.
+      - name: Set up TinyTeX
+        uses: r-lib/actions/setup-tinytex@v2
+        with:
+          # To keep the YAML clean, list needed TeX packages in a file.
+          # Create a file named 'texlive.packages' in your repo's root.
+          packages: |
+            collection-fontsrecommended
+            amsmath
+            graphicx
+            hyperref
+            babel
+            # Add any other required LaTeX packages here, one per line.
+
+      # 3. Set up a specific version of Perl
+      - name: Set up Perl
+        uses: shogo82148/actions-setup-perl@v1
+        with:
+          perl-version: '5.38'
+
+      # 4. Cache Perl modules to speed up future runs
+      # The cache is invalidated only when your 'cpanfile' changes.
+      - name: Cache cpanm modules
+        uses: actions/cache@v4
+        with:
+          path: ~/perl5
+          key: ${{ runner.os }}-perl-${{ hashFiles('**/cpanfile') }}
+          restore-keys: |
+            ${{ runner.os }}-perl-
+
+      # 5. Install LaTeXML and its Perl dependencies
+      # Using a cpanfile makes your dependencies explicit and reproducible.
+      - name: Install LaTeXML via cpanm
+        run: |
+          curl -L https://cpanmin.us | perl - App::cpanminus
+          cpanm --installdeps .
+
+      # 6. Run the LaTeXML compilation
+      - name: Compile with LaTeXML
+        run: |
+          mkdir -p public
+          latexml --dest=public/index.html your-main-file.tex
+
+      # 7. Upload the 'public' directory as a build artifact
+      # This makes the generated files available to other jobs (like 'deploy').
+      - name: Upload HTML artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: html-output
+          path: public/
+
+  # Job 2 (Optional): Deploy the generated HTML to GitHub Pages
+  deploy:
+    # This job runs only after the 'build' job has succeeded.
+    needs: build
+    
+    # Required permissions for deploying to GitHub Pages.
+    permissions:
+      pages: write
+      id-token: write
+
+    # Specify the deployment environment.
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+    steps:
+      # 1. Download the artifact that was uploaded by the 'build' job.
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: html-output
+
+      # 2. Deploy the downloaded files to GitHub Pages.
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
