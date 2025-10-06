@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     # Run all steps in this job inside the official LaTeXML Docker container
     container:
-      image: brucemiller/latexml:latest
+       image: latexml/ar5ivist:latest
 
     steps:
       # 1. Check out your repository's code
