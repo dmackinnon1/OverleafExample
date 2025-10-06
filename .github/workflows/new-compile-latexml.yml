@@ -5,60 +5,40 @@ name: Compile LaTeX to HTML with LaTeXML
 on:
   workflow_dispatch:
 jobs:
+  # Job 1: Build the HTML and prepare the deployment artifact
   build:
     runs-on: ubuntu-latest
-    # Run all steps in this job inside the official LaTeXML Docker container
     container:
-       image: latexml/ar5ivist:latest
-
+      image: latexml/ar5ivist:latest
     steps:
-      # 1. Check out your repository's code
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # NOTE: No installation steps for TeX Live or LaTeXML are needed!
-      # They are already included in the Docker image.
-
-      # 2. Run the LaTeXML compilation
       - name: Compile with LaTeXML
         run: |
-          # Ensure the runner user owns the files to be able to write output
           chown -R $(id -u):$(id -g) .
           mkdir -p public
-          latexml --dest=public/index.html main.tex
+          latexml --dest=public/index.html your-main-file.tex
 
-      # 3. Upload the 'public' directory as a build artifact
-      - name: Upload HTML artifact
-        uses: actions/upload-artifact@v4
+      # This is the key change: Use the dedicated action for GitHub Pages
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          name: html-output
-          path: public/
-# Job 2 (Optional): Deploy the generated HTML to GitHub Pages
+          # Tell it to upload the 'public' directory
+          path: ./public
+
+  # Job 2: Deploy the artifact to GitHub Pages
   deploy:
-    # This job runs only after the 'build' job has succeeded.
     needs: build
-    
-    # Required permissions for deploying to GitHub Pages.
     permissions:
       pages: write
       id-token: write
-
-    # Specify the deployment environment.
     environment:
-      name: html-output
+      name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-
     runs-on: ubuntu-latest
     steps:
-      # 1. Download the artifact that was uploaded by the 'build' job.
-      - name: Download artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: html-output
-
-      # 2. Deploy the downloaded files to GitHub Pages.
+      # The download step is no longer needed
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-        with:
-          name: html-output
