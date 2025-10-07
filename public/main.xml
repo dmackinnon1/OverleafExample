@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?latexml searchpaths="/__w/OverleafExample/OverleafExample"?>
+<?latexml class="article"?>
+<?latexml package="babel" options="english"?>
+<?latexml package="geometry" options="letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm"?>
+<?latexml package="amsmath"?>
+<?latexml package="graphicx"?>
+<?latexml package="hyperref" options="colorlinks=true, allcolors=blue"?>
+<?latexml RelaxNGSchema="LaTeXML"?>
+<document xmlns="http://dlmf.nist.gov/LaTeXML" class="ltx_authors_1line" xml:lang="en">
+  <resource src="LaTeXML.css" type="text/css"/>
+  <resource src="ltx-article.css" type="text/css"/>
+  <title>Your Paper</title>
+  <creator role="author">
+    <personname>You</personname>
+  </creator>
+  <abstract name="Abstract">
+    <p>Your abstract.</p>
+  </abstract>
+  <section inlist="toc" xml:id="S1">
+    <tags>
+      <tag>1</tag>
+      <tag role="autoref">section 1</tag>
+      <tag role="refnum">1</tag>
+      <tag role="typerefnum">§1</tag>
+    </tags>
+    <title><tag close=" ">1</tag>Introduction</title>
+    <para xml:id="S1.p1">
+      <p>Your introduction goes here! Simply start writing your document and use the Recompile button to view the updated PDF preview. Examples of commonly used commands and features are listed below, to help you get started.</p>
+    </para>
+    <para xml:id="S1.p2">
+      <p>Once you’re familiar with the editor, you can find various project settings in the Overleaf menu, accessed via the button in the very top left of the editor. To view tutorials, user guides, and further documentation, please visit our <ref class="ltx_href" href="https://www.overleaf.com/learn">help library</ref>, or head to our plans page to <ref class="ltx_href" href="https://www.overleaf.com/user/subscription/plans">choose your plan</ref>.</p>
+    </para>
+  </section>
+  <section inlist="toc" xml:id="S2">
+    <tags>
+      <tag>2</tag>
+      <tag role="autoref">section 2</tag>
+      <tag role="refnum">2</tag>
+      <tag role="typerefnum">§2</tag>
+    </tags>
+    <title><tag close=" ">2</tag>Some examples to get started</title>
+    <subsection inlist="toc" xml:id="S2.SS1">
+      <tags>
+        <tag>2.1</tag>
+        <tag role="autoref">subsection 2.1</tag>
+        <tag role="refnum">2.1</tag>
+        <tag role="typerefnum">§2.1</tag>
+      </tags>
+      <title><tag close=" ">2.1</tag>How to create Sections and Subsections</title>
+      <para xml:id="S2.SS1.p1">
+        <p>Simply use the section and subsection commands, as in this example document! With Overleaf, all the formatting and numbering is handled automatically according to the template you’ve chosen. If you’re using the Visual Editor, you can also create new section and subsections via the buttons in the editor toolbar.</p>
+      </para>
+    </subsection>
+    <subsection inlist="toc" xml:id="S2.SS2">
+      <tags>
+        <tag>2.2</tag>
+        <tag role="autoref">subsection 2.2</tag>
+        <tag role="refnum">2.2</tag>
+        <tag role="typerefnum">§2.2</tag>
+      </tags>
+      <title><tag close=" ">2.2</tag>How to include Figures</title>
+      <para xml:id="S2.SS2.p1">
+        <p>First you have to upload the image file from your computer using the upload link in the file-tree menu. Then use the includegraphics command to include it in your document. Use the figure environment and the caption command to add a number and a caption to your figure. See the code for Figure <ref labelref="LABEL:fig:frog"/> in this section for an example.</p>
+      </para>
+      <para xml:id="S2.SS2.p2">
+        <p>Note that your figure will automatically be placed in the most appropriate place for it, given the surrounding text and taking into account other figures or tables that may be close by. You can find out more about adding images to your documents in this help article on <ref class="ltx_href" href="https://www.overleaf.com/learn/how-to/Including_images_on_Overleaf">including images on Overleaf</ref>.</p>
+      </para>
+      <figure inlist="lof" labels="LABEL:fig:frog" xml:id="S2.F1">
+        <tags>
+          <tag>Figure 1</tag>
+          <tag role="autoref">Figure 1</tag>
+          <tag role="refnum">1</tag>
+          <tag role="typerefnum">Figure 1</tag>
+        </tags>
+        <graphics candidates="frog.jpg" class="ltx_centering" graphic="frog.jpg" options="width=108.405pt,keepaspectratio=true" xml:id="S2.F1.g1"/>
+        <toccaption class="ltx_centering"><tag close=" ">1</tag>This frog was uploaded via the file-tree menu.</toccaption>
+        <caption class="ltx_centering"><tag close=": ">Figure 1</tag>This frog was uploaded via the file-tree menu.</caption>
+      </figure>
+    </subsection>
+    <subsection inlist="toc" xml:id="S2.SS3">
+      <tags>
+        <tag>2.3</tag>
+        <tag role="autoref">subsection 2.3</tag>
+        <tag role="refnum">2.3</tag>
+        <tag role="typerefnum">§2.3</tag>
+      </tags>
+      <title><tag close=" ">2.3</tag>How to add Tables</title>
+      <para xml:id="S2.SS3.p1">
+        <p>Use the table and tabular environments for basic tables — see Table <ref labelref="LABEL:tab:widgets"/>, for example. For more information, please see this help article on <ref class="ltx_href" href="https://www.overleaf.com/learn/latex/tables">tables</ref>.</p>
+      </para>
+      <table inlist="lot" labels="LABEL:tab:widgets" xml:id="S2.T1">
+        <tags>
+          <tag>Table 1</tag>
+          <tag role="autoref">Table 1</tag>
+          <tag role="refnum">1</tag>
+          <tag role="typerefnum">Table 1</tag>
+        </tags>
+        <tabular class="ltx_centering ltx_guessed_headers" vattach="middle">
+          <thead>
+            <tr>
+              <td align="left" border="r" thead="column row">Item</td>
+              <td align="right" thead="column">Quantity</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td align="left" border="r t" thead="row">Widgets</td>
+              <td align="right" border="t">42</td>
+            </tr>
+            <tr>
+              <td align="left" border="r" thead="row">Gadgets</td>
+              <td align="right">13</td>
+            </tr>
+          </tbody>
+        </tabular>
+        <toccaption class="ltx_centering"><tag close=" ">1</tag>An example table.</toccaption>
+        <caption class="ltx_centering"><tag close=": ">Table 1</tag>An example table.</caption>
+      </table>
+    </subsection>
+    <subsection inlist="toc" xml:id="S2.SS4">
+      <tags>
+        <tag>2.4</tag>
+        <tag role="autoref">subsection 2.4</tag>
+        <tag role="refnum">2.4</tag>
+        <tag role="typerefnum">§2.4</tag>
+      </tags>
+      <title><tag close=" ">2.4</tag>How to add Comments and Track Changes</title>
+      <para xml:id="S2.SS4.p1">
+        <p>Comments can be added to your project by highlighting some text and clicking “Add comment” in the top right of the editor pane. To view existing comments, click on the Review menu in the toolbar above. To reply to a comment, click on the Reply button in the lower right corner of the comment. You can close the Review pane by clicking its name on the toolbar when you’re done reviewing for the time being.</p>
+      </para>
+      <para xml:id="S2.SS4.p2">
+        <p>Track changes are available on all our <ref class="ltx_href" href="https://www.overleaf.com/user/subscription/plans">premium plans</ref>, and can be toggled on or off using the option at the top of the Review pane. Track changes allow you to keep track of every change made to the document, along with the person making the change.</p>
+      </para>
+    </subsection>
+    <subsection inlist="toc" xml:id="S2.SS5">
+      <tags>
+        <tag>2.5</tag>
+        <tag role="autoref">subsection 2.5</tag>
+        <tag role="refnum">2.5</tag>
+        <tag role="typerefnum">§2.5</tag>
+      </tags>
+      <title><tag close=" ">2.5</tag>How to add Lists</title>
+      <para xml:id="S2.SS5.p1">
+        <p>You can make lists with automatic numbering …</p>
+      </para>
+      <para xml:id="S2.SS5.p2">
+        <enumerate xml:id="S2.I1">
+<!--  %**** main.tex Line 75 **** -->          <item xml:id="S2.I1.i1">
+            <tags>
+              <tag>1.</tag>
+              <tag role="autoref">item 1</tag>
+              <tag role="refnum">1</tag>
+              <tag role="typerefnum">item 1</tag>
+            </tags>
+            <para xml:id="S2.I1.i1.p1">
+              <p>Like this,</p>
+            </para>
+          </item>
+          <item xml:id="S2.I1.i2">
+            <tags>
+              <tag>2.</tag>
+              <tag role="autoref">item 2</tag>
+              <tag role="refnum">2</tag>
+              <tag role="typerefnum">item 2</tag>
+            </tags>
+            <para xml:id="S2.I1.i2.p1">
+              <p>and like this.</p>
+            </para>
+          </item>
+        </enumerate>
+        <p>…or bullet points …</p>
+        <itemize xml:id="S2.I2">
+          <item xml:id="S2.I2.i1">
+            <tags>
+              <tag>•</tag>
+              <tag role="autoref">item </tag>
+              <tag role="typerefnum">1st item</tag>
+            </tags>
+            <para xml:id="S2.I2.i1.p1">
+              <p>Like this,</p>
+            </para>
+          </item>
+          <item xml:id="S2.I2.i2">
+            <tags>
+              <tag>•</tag>
+              <tag role="autoref">item </tag>
+              <tag role="typerefnum">2nd item</tag>
+            </tags>
+            <para xml:id="S2.I2.i2.p1">
+              <p>and like this.</p>
+            </para>
+          </item>
+        </itemize>
+      </para>
+    </subsection>
+    <subsection inlist="toc" xml:id="S2.SS6">
+      <tags>
+        <tag>2.6</tag>
+        <tag role="autoref">subsection 2.6</tag>
+        <tag role="refnum">2.6</tag>
+        <tag role="typerefnum">§2.6</tag>
+      </tags>
+      <title><tag close=" ">2.6</tag>How to write Mathematics</title>
+      <para xml:id="S2.SS6.p1">
+        <p><text class="ltx_LaTeX_logo" cssstyle="letter-spacing:-0.2em; margin-right:0.1em">L<text cssstyle="font-variant:small-caps;" yoffset="0.4ex">a</text>T<text cssstyle="font-variant:small-caps;font-size:120%" yoffset="-0.2ex">e</text>X</text> is great at typesetting mathematics. Let <Math mode="inline" tex="X_{1},X_{2},\ldots,X_{n}" text="list@(X _ 1, X _ 2, ldots, X _ n)" xml:id="S2.SS6.p1.m1">
+            <XMath>
+              <XMDual>
+                <XMApp>
+                  <XMTok meaning="list"/>
+                  <XMRef idref="S2.SS6.p1.m1.2"/>
+                  <XMRef idref="S2.SS6.p1.m1.3"/>
+                  <XMRef idref="S2.SS6.p1.m1.1"/>
+                  <XMRef idref="S2.SS6.p1.m1.4"/>
+                </XMApp>
+                <XMWrap>
+                  <XMApp xml:id="S2.SS6.p1.m1.2">
+                    <XMTok role="SUBSCRIPTOP" scriptpos="post1"/>
+                    <XMTok font="italic" role="UNKNOWN">X</XMTok>
+                    <XMTok fontsize="70%" meaning="1" role="NUMBER">1</XMTok>
+                  </XMApp>
+                  <XMTok role="PUNCT">,</XMTok>
+                  <XMApp xml:id="S2.SS6.p1.m1.3">
+                    <XMTok role="SUBSCRIPTOP" scriptpos="post1"/>
+                    <XMTok font="italic" role="UNKNOWN">X</XMTok>
+                    <XMTok fontsize="70%" meaning="2" role="NUMBER">2</XMTok>
+                  </XMApp>
+                  <XMTok role="PUNCT">,</XMTok>
+                  <XMTok name="ldots" role="ID" xml:id="S2.SS6.p1.m1.1">…</XMTok>
+                  <XMTok role="PUNCT">,</XMTok>
+                  <XMApp xml:id="S2.SS6.p1.m1.4">
+                    <XMTok role="SUBSCRIPTOP" scriptpos="post1"/>
+                    <XMTok font="italic" role="UNKNOWN">X</XMTok>
+                    <XMTok font="italic" fontsize="70%" role="UNKNOWN">n</XMTok>
+                  </XMApp>
+                </XMWrap>
+              </XMDual>
+            </XMath>
+          </Math> be a sequence of independent and identically distributed random variables with <Math mode="inline" tex="\text{E}[X_{i}]=\mu" text="[E] * delimited-[]@(X _ i) = mu" xml:id="S2.SS6.p1.m2">
+            <XMath>
+              <XMApp>
+                <XMTok meaning="equals" role="RELOP">=</XMTok>
+                <XMApp>
+                  <XMTok meaning="times" role="MULOP">⁢</XMTok>
+                  <XMText>E</XMText>
+                  <XMDual>
+                    <XMApp>
+                      <XMTok meaning="delimited-[]"/>
+                      <XMRef idref="S2.SS6.p1.m2.1"/>
+                    </XMApp>
+                    <XMWrap>
+                      <XMTok role="OPEN" stretchy="false">[</XMTok>
+                      <XMApp xml:id="S2.SS6.p1.m2.1">
+                        <XMTok role="SUBSCRIPTOP" scriptpos="post1"/>
+                        <XMTok font="italic" role="UNKNOWN">X</XMTok>
+                        <XMTok font="italic" fontsize="70%" role="UNKNOWN">i</XMTok>
+                      </XMApp>
+                      <XMTok role="CLOSE" stretchy="false">]</XMTok>
+                    </XMWrap>
+                  </XMDual>
+                </XMApp>
+                <XMTok font="italic" name="mu" role="UNKNOWN">μ</XMTok>
+              </XMApp>
+            </XMath>
+          </Math> and <Math mode="inline" tex="\text{Var}[X_{i}]=\sigma^{2}&lt;\infty" text="[Var] * delimited-[]@(X _ i) = sigma ^ 2 &lt; infinity" xml:id="S2.SS6.p1.m3">
+            <XMath>
+              <XMApp>
+                <XMTok meaning="multirelation"/>
+                <XMApp>
+                  <XMTok meaning="times" role="MULOP">⁢</XMTok>
+                  <XMText>Var</XMText>
+                  <XMDual>
+                    <XMApp>
+                      <XMTok meaning="delimited-[]"/>
+                      <XMRef idref="S2.SS6.p1.m3.1"/>
+                    </XMApp>
+                    <XMWrap>
+                      <XMTok role="OPEN" stretchy="false">[</XMTok>
+                      <XMApp xml:id="S2.SS6.p1.m3.1">
+                        <XMTok role="SUBSCRIPTOP" scriptpos="post1"/>
+                        <XMTok font="italic" role="UNKNOWN">X</XMTok>
+                        <XMTok font="italic" fontsize="70%" role="UNKNOWN">i</XMTok>
+                      </XMApp>
+                      <XMTok role="CLOSE" stretchy="false">]</XMTok>
+                    </XMWrap>
+                  </XMDual>
+                </XMApp>
+                <XMTok meaning="equals" role="RELOP">=</XMTok>
+                <XMApp>
+                  <XMTok role="SUPERSCRIPTOP" scriptpos="post1"/>
+                  <XMTok font="italic" name="sigma" role="UNKNOWN">σ</XMTok>
+                  <XMTok fontsize="70%" meaning="2" role="NUMBER">2</XMTok>
+                </XMApp>
+                <XMTok meaning="less-than" role="RELOP">&lt;</XMTok>
+                <XMTok meaning="infinity" name="infty" role="ID">∞</XMTok>
+              </XMApp>
+            </XMath>
+          </Math>, and let</p>
+        <equation xml:id="S2.Ex1">
+          <Math mode="display" tex="S_{n}=\frac{X_{1}+X_{2}+\cdots+X_{n}}{n}=\frac{1}{n}\sum_{i}^{n}X_{i}" text="S _ n = (X _ 1 + X _ 2 + cdots + X _ n) / n = (1 / n) * ((sum _ i) ^ n)@(X _ i)" xml:id="S2.Ex1.m1">
+            <XMath>
+              <XMApp>
+                <XMTok meaning="multirelation"/>
+                <XMApp>
+                  <XMTok role="SUBSCRIPTOP" scriptpos="post1"/>
+                  <XMTok font="italic" role="UNKNOWN">S</XMTok>
+                  <XMTok font="italic" fontsize="70%" role="UNKNOWN">n</XMTok>
+                </XMApp>
+                <XMTok meaning="equals" role="RELOP">=</XMTok>
+                <XMApp>
+                  <XMTok mathstyle="display" meaning="divide" role="FRACOP"/>
+                  <XMApp>
+                    <XMTok meaning="plus" role="ADDOP">+</XMTok>
+                    <XMApp>
+                      <XMTok role="SUBSCRIPTOP" scriptpos="post2"/>
+                      <XMTok font="italic" role="UNKNOWN">X</XMTok>
+                      <XMTok fontsize="70%" meaning="1" role="NUMBER">1</XMTok>
+                    </XMApp>
+                    <XMApp>
+                      <XMTok role="SUBSCRIPTOP" scriptpos="post2"/>
+                      <XMTok font="italic" role="UNKNOWN">X</XMTok>
+                      <XMTok fontsize="70%" meaning="2" role="NUMBER">2</XMTok>
+                    </XMApp>
+                    <XMTok name="cdots" role="ID">⋯</XMTok>
+                    <XMApp>
+                      <XMTok role="SUBSCRIPTOP" scriptpos="post2"/>
+                      <XMTok font="italic" role="UNKNOWN">X</XMTok>
+                      <XMTok font="italic" fontsize="70%" role="UNKNOWN">n</XMTok>
+                    </XMApp>
+                  </XMApp>
+                  <XMTok font="italic" role="UNKNOWN">n</XMTok>
+                </XMApp>
+                <XMTok meaning="equals" role="RELOP">=</XMTok>
+                <XMApp>
+                  <XMTok meaning="times" role="MULOP">⁢</XMTok>
+                  <XMApp>
+                    <XMTok mathstyle="display" meaning="divide" role="FRACOP"/>
+                    <XMTok meaning="1" role="NUMBER">1</XMTok>
+                    <XMTok font="italic" role="UNKNOWN">n</XMTok>
+                  </XMApp>
+                  <XMApp>
+                    <XMApp>
+                      <XMTok role="SUPERSCRIPTOP" scriptpos="mid1"/>
+                      <XMApp>
+                        <XMTok role="SUBSCRIPTOP" scriptpos="mid1"/>
+                        <XMTok mathstyle="display" meaning="sum" role="SUMOP" scriptpos="mid">∑</XMTok>
+                        <XMTok font="italic" fontsize="70%" role="UNKNOWN">i</XMTok>
+                      </XMApp>
+                      <XMTok font="italic" fontsize="70%" role="UNKNOWN">n</XMTok>
+                    </XMApp>
+                    <XMApp>
+                      <XMTok role="SUBSCRIPTOP" scriptpos="post1"/>
+                      <XMTok font="italic" role="UNKNOWN">X</XMTok>
+                      <XMTok font="italic" fontsize="70%" role="UNKNOWN">i</XMTok>
+                    </XMApp>
+                  </XMApp>
+                </XMApp>
+              </XMApp>
+            </XMath>
+          </Math>
+        </equation>
+        <p>denote their mean. Then as <Math mode="inline" tex="n" text="n" xml:id="S2.SS6.p1.m4">
+            <XMath>
+              <XMTok font="italic" role="UNKNOWN">n</XMTok>
+            </XMath>
+          </Math> approaches infinity, the random variables <Math mode="inline" tex="\sqrt{n}(S_{n}-\mu)" text="square-root@(n) * (S _ n - mu)" xml:id="S2.SS6.p1.m5">
+            <XMath>
+              <XMApp>
+                <XMTok meaning="times" role="MULOP">⁢</XMTok>
+                <XMApp>
+                  <XMTok meaning="square-root"/>
+                  <XMTok font="italic" role="UNKNOWN">n</XMTok>
+                </XMApp>
+                <XMDual>
+                  <XMRef idref="S2.SS6.p1.m5.1"/>
+                  <XMWrap>
+                    <XMTok role="OPEN" stretchy="false">(</XMTok>
+                    <XMApp xml:id="S2.SS6.p1.m5.1">
+                      <XMTok meaning="minus" role="ADDOP">-</XMTok>
+                      <XMApp>
+                        <XMTok role="SUBSCRIPTOP" scriptpos="post1"/>
+                        <XMTok font="italic" role="UNKNOWN">S</XMTok>
+                        <XMTok font="italic" fontsize="70%" role="UNKNOWN">n</XMTok>
+                      </XMApp>
+                      <XMTok font="italic" name="mu" role="UNKNOWN">μ</XMTok>
+                    </XMApp>
+                    <XMTok role="CLOSE" stretchy="false">)</XMTok>
+                  </XMWrap>
+                </XMDual>
+              </XMApp>
+            </XMath>
+          </Math> converge in distribution to a normal <Math mode="inline" tex="\mathcal{N}(0,\sigma^{2})" text="N * open-interval@(0, sigma ^ 2)" xml:id="S2.SS6.p1.m6">
+            <XMath>
+              <XMApp>
+                <XMTok meaning="times" role="MULOP">⁢</XMTok>
+                <XMTok font="caligraphic" role="UNKNOWN">N</XMTok>
+                <XMDual>
+                  <XMApp>
+                    <XMTok meaning="open-interval"/>
+                    <XMRef idref="S2.SS6.p1.m6.1"/>
+                    <XMRef idref="S2.SS6.p1.m6.2"/>
+                  </XMApp>
+                  <XMWrap>
+                    <XMTok role="OPEN" stretchy="false">(</XMTok>
+                    <XMTok meaning="0" role="NUMBER" xml:id="S2.SS6.p1.m6.1">0</XMTok>
+                    <XMTok role="PUNCT">,</XMTok>
+                    <XMApp xml:id="S2.SS6.p1.m6.2">
+                      <XMTok role="SUPERSCRIPTOP" scriptpos="post1"/>
+                      <XMTok font="italic" name="sigma" role="UNKNOWN">σ</XMTok>
+                      <XMTok fontsize="70%" meaning="2" role="NUMBER">2</XMTok>
+                    </XMApp>
+                    <XMTok role="CLOSE" stretchy="false">)</XMTok>
+                  </XMWrap>
+                </XMDual>
+              </XMApp>
+            </XMath>
+          </Math>.</p>
+      </para>
+    </subsection>
+    <subsection inlist="toc" xml:id="S2.SS7">
+      <tags>
+        <tag>2.7</tag>
+        <tag role="autoref">subsection 2.7</tag>
+        <tag role="refnum">2.7</tag>
+        <tag role="typerefnum">§2.7</tag>
+      </tags>
+      <title><tag close=" ">2.7</tag>How to change the margins and paper size</title>
+      <para xml:id="S2.SS7.p1">
+        <p>Usually the template you’re using will have the page margins and paper size set correctly for that use-case. For example, if you’re using a journal article template provided by the journal publisher, that template will be formatted according to their requirements. In these cases, it’s best not to alter the margins directly.</p>
+      </para>
+      <para xml:id="S2.SS7.p2">
+        <p>If however you’re using a more general template, such as this one, and would like to alter the margins, a common way to do so is via the geometry package. You can find the geometry package loaded in the preamble at the top of this example file, and if you’d like to learn more about how to adjust the settings, please visit this help article on <ref class="ltx_href" href="https://www.overleaf.com/learn/latex/page_size_and_margins">page size and margins</ref>.</p>
+      </para>
+    </subsection>
+    <subsection inlist="toc" xml:id="S2.SS8">
+      <tags>
+        <tag>2.8</tag>
+        <tag role="autoref">subsection 2.8</tag>
+        <tag role="refnum">2.8</tag>
+        <tag role="typerefnum">§2.8</tag>
+      </tags>
+      <title><tag close=" ">2.8</tag>How to change the document language and spell check settings</title>
+      <para xml:id="S2.SS8.p1">
+        <p><!--  %**** main.tex Line 100 **** -->Overleaf supports many different languages, including multiple different languages within one document.</p>
+      </para>
+      <para xml:id="S2.SS8.p2">
+        <p>To configure the document language, simply edit the option provided to the babel package in the preamble at the top of this example project. To learn more about the different options, please visit this help article on <ref class="ltx_href" href="https://www.overleaf.com/learn/latex/International_language_support">international language support</ref>.</p>
+      </para>
+      <para xml:id="S2.SS8.p3">
+        <p>To change the spell check language, simply open the Overleaf menu at the top left of the editor window, scroll down to the spell check setting, and adjust accordingly.</p>
+      </para>
+    </subsection>
+    <subsection inlist="toc" xml:id="S2.SS9">
+      <tags>
+        <tag>2.9</tag>
+        <tag role="autoref">subsection 2.9</tag>
+        <tag role="refnum">2.9</tag>
+        <tag role="typerefnum">§2.9</tag>
+      </tags>
+      <title><tag close=" ">2.9</tag>How to add Citations and a References List</title>
+      <para xml:id="S2.SS9.p1">
+        <p>You can simply upload a <verbatim font="typewriter">.bib</verbatim> file containing your BibTeX entries, created with a tool such as JabRef. You can then cite entries from it, like this: <cite class="ltx_citemacro_cite">[<bibref bibrefs="greenwade93" separator="," yyseparator=","/>]</cite>. Just remember to specify a bibliography style, as well as the filename of the <verbatim font="typewriter">.bib</verbatim>. You can find a <ref class="ltx_href" href="https://www.overleaf.com/help/97-how-to-include-a-bibliography-using-bibtex">video tutorial here</ref> to learn more about BibTeX.</p>
+      </para>
+      <para xml:id="S2.SS9.p2">
+        <p>If you have an <ref class="ltx_href" href="https://www.overleaf.com/user/subscription/plans">upgraded account</ref>, you can also import your Mendeley or Zotero library directly as a <verbatim font="typewriter">.bib</verbatim> file, via the upload menu in the file-tree.</p>
+      </para>
+    </subsection>
+    <subsection inlist="toc" xml:id="S2.SS10">
+      <tags>
+        <tag>2.10</tag>
+        <tag role="autoref">subsection 2.10</tag>
+        <tag role="refnum">2.10</tag>
+        <tag role="typerefnum">§2.10</tag>
+      </tags>
+      <title><tag close=" ">2.10</tag>Good luck!</title>
+      <para xml:id="S2.SS10.p1">
+        <p>We hope you find Overleaf useful, and do take a look at our <ref class="ltx_href" href="https://www.overleaf.com/learn">help library</ref> for more tutorials and user guides! Please also let us know if you have any feedback using the Contact Us link at the bottom of the Overleaf menu — or use the contact form at <ref class="ltx_url" font="typewriter" href="https://www.overleaf.com/contact">https://www.overleaf.com/contact</ref>.</p>
+      </para>
+    </subsection>
+  </section>
+  <bibliography bibstyle="alpha" citestyle="AY" files="sample" xml:id="bib">
+    <title>References</title>
+  </bibliography>
+</document>
