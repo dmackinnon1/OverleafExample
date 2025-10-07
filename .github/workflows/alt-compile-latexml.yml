@@ -1,0 +1,49 @@
+name: Alternate HTML Compile Action
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    #container: texlive/texlive:latest
+
+    steps:
+      - name: Install TexLive and LaTeXML
+        run: |
+          sudo apt-get install texlive;
+          sudo apt-get install latexml;       
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Compile with LaTeXML
+        run: |
+          chown -R $(id -u):$(id -g) .
+          mkdir -p public
+          # 1. Convert LaTeX to XML 
+          latexml --dest=public/main.xml main.tex
+          # 2. Convert XML to HTML and generate images for math and graphics
+          latexmlpost --dest=public/index.html --format=html5 \
+          --mathimages --graphicimages --pictureimages \
+          public/main.xml
+          
+      # This is the key change: Use the dedicated action for GitHub Pages
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Tell it to upload the 'public' directory
+          path: ./public
+ # Job 2: Deploy the artifact to GitHub Pages
+  deploy:
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      # The download step is no longer needed
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
