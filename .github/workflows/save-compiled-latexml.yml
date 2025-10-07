@@ -17,11 +17,11 @@ jobs:
         run: |
           chown -R $(id -u):$(id -g) .
           mkdir -p public
-          latexml --dest=public/your-main-file.xml your-main-file.tex
+          latexml --dest=public/main.xml main.tex
           latexmlpost --dest=public/index.html --format=html5 \
           --mathimages --graphicimages --pictureimages \
           --css=style.css \
-          public/your-main-file.xml
+          public/main.xml
 
       - name: Commit and Push HTML output
         run: |
