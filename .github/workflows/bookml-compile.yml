@@ -10,12 +10,12 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name: cleanup old public folder
+      - name: cleanup old saved folder
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
-          git rm --ignore-unmatch -rf public
-          git commit --allow-empty -m 'removing old public folder'
+          git rm --ignore-unmatch -rf saved
+          git commit --allow-empty -m 'removing old saved folder'
           git push
      
      # this variable is set so that sections are not given separate pages
@@ -36,14 +36,14 @@ jobs:
       - name: Unzip and Stage Output
         run: |
           # The output from the bookml action is a zip file
-          mkdir public
-          unzip -o main.zip -d public
+          mkdir saved
+          unzip -o main.zip -d saved
           
       - name: Commit and Push HTML output
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
           git pull
-          git add public/
+          git add saved/
           git commit -m "Autogenerate HTML from bookml" || echo "No changes to commit"
           git push
