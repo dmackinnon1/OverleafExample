@@ -1,7 +1,4 @@
-# .github/workflows/compile-latexml.yml
 name: Compile LaTeX to HTML with LaTeXML
-
-# Controls when the action will run.
 on:
   workflow_dispatch:
 jobs:
@@ -18,9 +15,8 @@ jobs:
         run: |
           chown -R $(id -u):$(id -g) .
           mkdir -p public
-          # 1. Convert LaTeX to XML (your-main-file.xml)
+          # 1. Convert LaTeX to XML 
           latexml --dest=public/main.xml main.tex
-          # 2. Convert XML to a self-contained HTML file with embedded images
           # 2. Convert XML to HTML and generate images for math and graphics
           latexmlpost --dest=public/index.html --format=html5 \
           --mathimages --graphicimages --pictureimages \
