@@ -4,9 +4,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    # Use the bookml Docker container
-    container:
-      image: ghcr.io/vlmantova/bookml:latest
     # Add permissions for the workflow to push to your repo
     permissions:
       contents: write
@@ -17,14 +14,22 @@ jobs:
       - name: set splitlat
         run: |
           echo "SPLITAT=" >> $GITHUB_ENV
-      - name: Compile with bookml
-        run: |
-          # The bookml user needs ownership of the files to write output
-          chown -R $(id -u):$(id -g) .
-          mkdir -p public-book
-          # Run the bookml command
-          bookml main.tex --output public-book/index.html
+          
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
+      - name: Compile with bookml
+        # This is your successful step that runs the Docker image as an action
+        uses: docker://ghcr.io/vlmantova/bookml:latest
+        with:
+          # Assumes your main file is 'main.tex'. Change if necessary.
+          args: main.tex
+
+      - name: Unzip and Stage Output
+        run: |
+          # The output from the bookml action is a zip file
+          unzip main.zip -d public
+          
       - name: Commit and Push HTML output
         run: |
           git config user.name "GitHub Actions Bot"
