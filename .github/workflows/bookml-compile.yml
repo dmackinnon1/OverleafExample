@@ -36,7 +36,7 @@ jobs:
       - name: Unzip and Stage Output
         run: |
           # The output from the bookml action is a zip file
-          unzip main.zip -d public
+          unzip main.zip -o public
           
       - name: Commit and Push HTML output
         run: |
