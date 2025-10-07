@@ -10,6 +10,14 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+      - name: cleanup old public folder
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+          git rm --ignore-unmatch -rf public
+          git commit --allow-empty -m 'removing old public folder'
+          git push
+     
      # this variable is set so that sections are not given separate pages
       - name: set splitlat
         run: |
