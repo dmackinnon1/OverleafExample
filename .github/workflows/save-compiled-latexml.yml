@@ -16,20 +16,20 @@ jobs:
       - name: Compile with LaTeXML
         run: |
           chown -R $(id -u):$(id -g) .
-          mkdir -p public
-          latexml --dest=public/main.xml main.tex
-          latexmlpost --dest=public/index.html --format=html5 \
+          mkdir -p saved
+          latexml --dest=saved/main.xml main.tex
+          latexmlpost --dest=saved/index.html --format=html5 \
           --mathimages --graphicimages --pictureimages \
           --css=style.css \
-          public/main.xml
+          saved/main.xml
 
       - name: Commit and Push HTML output
         run: |
           # Configure Git user
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
-          # Add all files in the public directory
-          git add public/
+          # Add all files in the saved directory
+          git add saved/
           # Commit the changes if any exist
           git commit -m "Autogenerate HTML from LaTeXML" || echo "No changes to commit"
           # Push the changes back to the main branch
