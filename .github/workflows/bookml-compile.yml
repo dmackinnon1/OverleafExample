@@ -37,7 +37,7 @@ jobs:
         run: |
           # The output from the bookml action is a zip file
           mkdir public
-          unzip main.zip -o public
+          unzip -o main.zip -d public
           
       - name: Commit and Push HTML output
         run: |
