@@ -6,11 +6,14 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: texlive/texlive:latest
     steps: 
-      - name: Install LaTeXML
-        run: |
-          sudo apt-get install latexml;      
+      - name: Run apt-get to install latexml
+        uses: addnab/docker-run-action@v3
+        with:
+          image: registry.gitlab.com/islandoftex/images/texlive:latest
+          run: |
+            apt-get update
+            apt-get install -y latexml    
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Compile with LaTeXML
