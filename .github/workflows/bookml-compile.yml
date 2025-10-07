@@ -23,7 +23,7 @@ jobs:
         uses: docker://ghcr.io/vlmantova/bookml:latest
         with:
           # Assumes your main file is 'main.tex'. Change if necessary.
-          args: main.tex
+          args: -k all aux-zip # warning: aux-zip must be run *sequentially after* all
 
       - name: Unzip and Stage Output
         run: |
