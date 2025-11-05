@@ -9,12 +9,12 @@ jobs:
         steps:
             - name: Set up Git repository
               uses: actions/checkout@v4
-            - name: add permissions
-              run: "git config --global --add safe.directory /__w/OverleafExample/OverleafExample"
+            - name: fix permissions
+              run: "chown -R $(id -u):$(id -g) ."
             - name: set git variables
               run: |
-                git config --global user.email "dmackinnon1@gmail.com"
-                git config --global user.name "Dan MacKinnon"
+                git config user.name "GitHub Actions Bot"
+                git config user.email "<>"
             - name: cleanup old report HTML
               run: |
                 git rm --ignore-unmatch report.html
