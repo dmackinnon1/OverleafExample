@@ -9,14 +9,15 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name: add permissions
-        run: "git config --global --add safe.directory /__w/OverleafExample/OverleafExample"
+      - name: Fix file permissions  
+        run: |
+          chown -R $(id -u):$(id -g) output.docx
       - name: set git variables
         run: |
-            git config --global user.email "GitHub Action Bot"
-            git config --global user.name "<>"
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
       - name: Convert with Pandoc Action
-        uses: pandoc/pandoc-action@v4
+        uses: docker://pandoc/core:3.5
         with:
           args: >-
            --from=latex
