@@ -1,0 +1,30 @@
+name: Convert to Word 2
+on:
+    workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  convert_via_pandoc:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: add permissions
+        run: "git config --global --add safe.directory /__w/OverleafExample/OverleafExample"
+      - name: set git variables
+        run: |
+            git config --global user.email "GitHub Action Bot"
+            git config --global user.name "<>"
+      - name: Convert with Pandoc Action
+        uses: pandoc/pandoc-action@v4
+        with:
+          args: >-
+           --from=latex
+           --to=docx
+           --output=output.docx
+           main.tex
+      - name: adding new word doc
+        run: |
+          git add output.docx
+          git commit -m 'adding new docx, github action'
+          git push
