@@ -27,7 +27,7 @@ jobs:
           git commit --allow-empty -m 'removing old pdfs, github action'
           git push
       - name: Run latexmk
-        run: "latexmk --pdflatex main.tex"
+        run: "latexmk --lualatex main.tex"
       - name: Store build timestamp
         run: echo "BUILD_TIME=$(date +'%Y-%m-%d_%H-%M-%S')" >> $GITHUB_ENV
       - name: change file name
