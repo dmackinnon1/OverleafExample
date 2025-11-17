@@ -15,12 +15,12 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name: add permissions
-        run: "git config --global --add safe.directory /__w/OverleafExample/OverleafExample"
-      - name: set git variables
-        run: |
-            git config --global user.email "dmackinnon1@gmail.com"
-            git config --global user.name "Dan MacKinnon"
+      - name: fix permissions
+              run: "chown -R $(id -u):$(id -g) ."
+       - name: set git variables
+              run: |
+                git config user.name "GitHub Actions Bot"
+                git config user.email "<>"
       - name: cleanup old pdfs
         run: |
           git rm --ignore-unmatch *.pdf
