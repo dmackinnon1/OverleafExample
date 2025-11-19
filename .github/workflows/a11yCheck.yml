@@ -1,0 +1,45 @@
+name: Check PDF Accessibility (veraPDF)
+
+on:
+  workflow_dispatch:
+  # Trigger when the PDF changes
+#  push:
+#    paths:
+#      - '**.pdf'
+
+permissions:
+  contents: write
+
+jobs:
+  accessibility_check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run veraPDF Accessibility Check
+        run: |
+          # 1. Pull the official image
+          docker pull verapdf/cli:latest
+          
+          # 2. Run the container
+          docker run --rm -v "${PWD}:/app" -w /app verapdf/cli:latest \
+          --flavour ua2 \
+          --format html \
+          main.pdf > a11y_report.html || true
+
+      - name: Commit and Push Report
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          
+          # Add the report
+          git add a11y_report.html
+          
+          # Commit only if the report changed (i.e., errors appeared or were fixed)
+          if ! git diff --quiet --cached; then
+            git commit -m "Chore: Update PDF accessibility report"
+            git push
+          else
+            echo "No changes to report."
+          fi
