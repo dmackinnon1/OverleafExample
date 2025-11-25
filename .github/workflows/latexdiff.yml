@@ -32,8 +32,7 @@ jobs:
           # --main : Your main LaTeX file
           # --no-view : Don't try to open a PDF viewer (crucial for CI)
           # --output : The name of the resulting file
-          git latexdiff HEAD^ --main main.tex --latex lualatex --no-view --output diff.pdf
-
+          git latexdiff HEAD^ --main main.tex --latex lualatex --no-view -o diff.pdf
       - name: Commit and Push Diff
         run: |
           git config --global user.name "github-actions[bot]"
