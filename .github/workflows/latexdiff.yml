@@ -1,0 +1,52 @@
+name: Generate LaTeX Diff
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '**.tex' # Only run if LaTeX files change
+
+permissions:
+  contents: write
+
+jobs:
+  generate_diff:
+    runs-on: ubuntu-latest
+    # We use a full TeX Live image which contains git-latexdiff and all dependencies
+    container:
+      image: ghcr.io/xu-cheng/texlive-full:latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          # Critical: 'fetch-depth: 0' fetches the entire git history.
+          # Without this, git-latexdiff cannot find the previous commit.
+          fetch-depth: 0
+
+      - name: Trust the workspace
+        # Fixes the "unsafe repository" error we discussed earlier
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
+      - name: Generate Diff PDF
+        run: |
+          # git latexdiff arguments:
+          # HEAD^ : The commit to compare against (the one before current)
+          # --main : Your main LaTeX file
+          # --no-view : Don't try to open a PDF viewer (crucial for CI)
+          # --output : The name of the resulting file
+          git latexdiff HEAD^ --main your-main-file.tex --no-view --output diff.pdf
+
+      - name: Commit and Push Diff
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          
+          git add diff.pdf
+          
+          if ! git diff --quiet --cached; then
+            git commit -m "Chore: Update diff.pdf showing recent changes"
+            git push
+          else
+            echo "No changes in diff.pdf."
+          fi
