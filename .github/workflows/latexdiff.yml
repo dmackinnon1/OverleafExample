@@ -28,7 +28,7 @@ jobs:
       - name: Generate Diff PDF
         run: |
           git latexdiff \
-            --main your-main-file.tex \
+            --main main.tex \
             --lualatex \
             --no-view \
             -o diff.pdf \
