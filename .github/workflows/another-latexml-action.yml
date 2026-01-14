@@ -33,7 +33,7 @@ jobs:
             --format=html5 
             --pmml 
             --mathtex 
-            your-main-file.tex
+            main.tex
 
       # ----------------------------------------------------------------
       # STEP 3: Commit Artifacts
