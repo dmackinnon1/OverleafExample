@@ -1,0 +1,54 @@
+name: Build and Check HTML
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '**.tex'
+
+permissions:
+  contents: write
+
+jobs:
+  html_build_and_check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ----------------------------------------------------------------
+      # STEP 1: Generate HTML5 (LaTeXML)
+      # ----------------------------------------------------------------
+      - name: Generate HTML
+        uses: docker://latexml/latexml:latest
+        with:
+          # latexmlc options:
+          # --dest: Output to a folder so images/css are contained
+          # --format=html5: The modern standard used by arXiv
+          # --pmml: Converts math to Presentation MathML (accessible)
+          # --mathtex: Adds fallback images for math (better browser support)
+          args: >-
+            latexmlc 
+            --dest=html_output/index.html 
+            --format=html5 
+            --pmml 
+            --mathtex 
+            your-main-file.tex
+
+      # ----------------------------------------------------------------
+      # STEP 3: Commit Artifacts
+      # ----------------------------------------------------------------
+      - name: Commit HTML and Report
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          
+          # Add the entire output folder and the report
+          git add -f html_output/
+          
+          if ! git diff --quiet --cached; then
+            git commit -m "Build: Update arXiv-style HTML"
+            git push
+          else
+            echo "No changes to commit."
+          fi
