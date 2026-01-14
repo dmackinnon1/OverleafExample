@@ -20,21 +20,18 @@ jobs:
       # STEP 1: Generate HTML5 (LaTeXML)
       # ----------------------------------------------------------------
       - name: Generate HTML
-        uses: docker://latexml/latexml:latest
-        with:
-          # latexmlc options:
-          # --dest: Output to a folder so images/css are contained
-          # --format=html5: The modern standard used by arXiv
-          # --pmml: Converts math to Presentation MathML (accessible)
-          # --mathtex: Adds fallback images for math (better browser support)
-          args: >-
-            latexmlc 
-            --dest=html_output/index.html 
-            --format=html5 
-            --pmml 
-            --mathtex 
+        # We use the specialized ar5ivist image
+        # Note: We mount the current directory ($PWD) to /source inside the container
+        run: |
+          docker run --rm -v "${PWD}:/source" -w /source \
+          latexml/ar5ivist:latest \
+          latexmlc \
+            --dest=html_output/index.html \
+            --format=html5 \
+            --pmml \
+            --mathtex \
+            --css=https://ar5iv.labs.arxiv.org/assets/ar5iv.css \
             main.tex
-
       # ----------------------------------------------------------------
       # STEP 3: Commit Artifacts
       # ----------------------------------------------------------------
