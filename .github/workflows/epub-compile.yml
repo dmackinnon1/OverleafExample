@@ -1,0 +1,52 @@
+name: Build EPUB
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build_epub:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ----------------------------------------------------------------
+      # STEP 1: Install LaTeXML (The robust apt-get method)
+      # ----------------------------------------------------------------
+      - name: Install LaTeXML
+        run: |
+          sudo apt-get update
+          # Install latexml and standard latex packages required for compilation
+          sudo apt-get install -y latexml texlive-latex-recommended texlive-latex-extra
+
+      # ----------------------------------------------------------------
+      # STEP 2: Generate EPUB
+      # ----------------------------------------------------------------
+      - name: Generate EPUB
+        run: |
+          # Run the LaTeXML compiler
+          # --dest specifies the output format and filename based on the .epub extension
+          latexmlc \
+            --dest=output.epub \
+            --log=latexml.log \
+            main.tex
+
+      # ----------------------------------------------------------------
+      # STEP 3: Commit Artifact
+      # ----------------------------------------------------------------
+      - name: Commit EPUB
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          
+          git add output.epub
+          
+          if ! git diff --quiet --cached; then
+            git commit -m "Build: Generate updated EPUB from LaTeX source"
+            git push
+          else
+            echo "No changes to commit."
+          fi
